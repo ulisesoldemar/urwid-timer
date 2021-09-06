@@ -11,11 +11,18 @@ DEFAULT_TIME = 5*60
 class Timer(urwid.BigText):
     signals = ['started', 'ended']
     _selectable = True
-    def __init__(self, t=deserialize('time', DEFAULT_TIME), font=None, no_ds=False, no_title=False):
+    # Se deserializa la variable de tiempo para conocer con que valor terminó
+    # en la ejecución anterior
+    def __init__(self, 
+            t=deserialize('time', DEFAULT_TIME), 
+            font=None, 
+            no_ds=False, 
+            no_title=False
+        ):
         self.started = False
-        self.t = t
-        self._remaining = t
-        self._elapsed = 0
+        self.t = t # Valor del tiempo de inicio del cronómetro
+        self._remaining = t # Valor del tiempo restante
+        self._elapsed = 0 # Valor del tiempo transcurrido
         self.no_ds = no_ds
         self.no_title = no_title
         self.set_text(self.format_text(t))
