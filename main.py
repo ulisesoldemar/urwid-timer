@@ -35,17 +35,23 @@ def run(timer):
 
 def main():
     try:
+        # Se ejecuta el cronómetro
         timer = Timer()
         run(timer)
     except urwid.ExitMainLoop:
+        # Salida por finalización del programa
         print('Fin del MainLoop')
     except UserInterrupt:
+        # Salida estándar con la tecla 'Q'
         print("Detenido por el usuario")
         print("Tiempo restante:", timer.format_text(timer.remaining))
     except KeyboardInterrupt:
+        # Salida por interrupción de teclado (CTRL+C)
         print("Detenido por el teclado")
         print("Tiempo restante:", timer.format_text(timer.remaining))
     finally:
+        # Pase lo que pase, se crea una copia del valor del tiempo
+        # para reanudar su ejecución en caso de que falle
         serialize('time', timer.remaining)
 
 if __name__ == '__main__':
