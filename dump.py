@@ -22,6 +22,5 @@ def deserialize(varname, value):
         with open(filename, 'rb') as file:
             return pickle.load(file)
     # De lo contrario, crea una nueva instancia 
-    else:
-        return value
+    return value
 
